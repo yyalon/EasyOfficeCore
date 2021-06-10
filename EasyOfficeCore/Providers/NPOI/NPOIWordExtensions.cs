@@ -11,8 +11,8 @@ namespace EasyOffice.Providers.NPOI
     public static class NPOIWordExtensions
     {
         //在NPOI中，每厘米对应的长度数值
-        private const int NPOI_PICTURE_LENGTH_EVERY_CM = 360144;
-
+        //private const int NPOI_PICTURE_LENGTH_EVERY_CM = 360144;
+        private const int NPOI_PICTURE_LENGTH_EVERY_CM = 9525;
         public static XWPFDocument ToNPOI(this Word word)
         {
             XWPFDocument doc = null;
@@ -110,6 +110,8 @@ namespace EasyOffice.Providers.NPOI
                 int height = (int)(Math.Ceiling(picture.Height * NPOI_PICTURE_LENGTH_EVERY_CM));
                 int width = (int)(Math.Ceiling(picture.Width * NPOI_PICTURE_LENGTH_EVERY_CM));
 
+                //int height = (int)(Math.Ceiling(picture.Height ));
+                //int width = (int)(Math.Ceiling(picture.Width));
                 xwpfRun.AddPicture(pictureData, picture.PictureType.GetHashCode(), picture.FileName, width, height);
 
                 CT_Inline inline = xwpfRun.GetCTR().GetDrawingList()[0].inline[0];
